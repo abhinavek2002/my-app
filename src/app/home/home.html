@@ -1,0 +1,50 @@
+<div class="app-container">
+
+  <div class="sidenav" [class.open]="isOpen">
+    <button class="toggle-btn" (click)="toggle()">&#9776;</button>
+
+    <div class="nav-item" [class.active]="currentPage === 'home'" (click)="showPage('home')">
+      <mat-icon>home</mat-icon>
+      <span class="nav-label" *ngIf="isOpen">Home</span>
+    </div>
+
+    <div class="nav-item" [class.active]="currentPage === 'messages'" (click)="showPage('messages')">
+      <mat-icon>mail</mat-icon>
+      <span class="nav-label" *ngIf="isOpen">Messages</span>
+    </div>
+
+    <div class="nav-item" [class.active]="currentPage === 'settings'" (click)="showPage('settings')">
+      <mat-icon>settings</mat-icon>
+      <span class="nav-label" *ngIf="isOpen">Settings</span>
+    </div>
+  </div>
+
+  <div class="wrapper" [style.marginLeft]="isOpen ? '200px' : '56px'">
+    <div class="header">
+      <span class="page-title">{{ currentPage | titlecase }}</span>
+      <span class="spacer"></span>
+      <button mat-button [matMenuTriggerFor]="menu" class="user-btn">
+        <mat-icon>person</mat-icon> User ▾
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>⚙️ Settings</button>
+        <button mat-menu-item (click)="logout()">🚪 Logout</button>
+      </mat-menu>
+    </div>
+
+    <div class="content">
+      <div *ngIf="currentPage === 'home'">
+        <h1>Welcome</h1>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </div>
+      <div *ngIf="currentPage === 'messages'">
+        <h1>Messages</h1>
+        <p>Your messages will appear here.</p>
+      </div>
+      <div *ngIf="currentPage === 'settings'">
+        <h1>Settings</h1>
+        <p>Your settings will appear here.</p>
+      </div>
+    </div>
+  </div>
+</div>
